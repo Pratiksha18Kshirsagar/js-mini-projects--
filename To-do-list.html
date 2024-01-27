@@ -11,12 +11,22 @@
         body {
             font-family: "Cormorant Garamond", serif;
         }
+
         button {
             font-family: "Cormorant Garamond", serif;
         }
 
         h1 {
             color: brown;
+        }
+
+        li {
+            padding: 5px;
+            list-style: decimal;
+        }
+
+        .Edit {
+            margin: 5px;
         }
     </style>
 </head>
@@ -30,25 +40,89 @@
     <button class="add">Add</button>
 
     <ul>
-      
+
     </ul>
 
     <script>
-         function add(){
-             let input = document.querySelector("input");
-             let newLi = document.createElement("li");
-             let ul = document.querySelector("ul");
-             newLi.innerText = input.value;
-             ul.append(newLi);
-             console.log(ul.innerHTML);
-         }
+        let input = document.querySelector("input");
+        let addbtn = document.querySelector(".add");
 
-          let  addbtn = document.querySelector(".add");
-         
-        addbtn.addEventListener("click" , ()=>{
-            add();
+        addbtn.addEventListener("click", () => {
+            if (input.value) {
+                add();
+            }
         })
 
+
+        function add() {
+            let newLi = document.createElement("li");
+            console.log(newLi)
+            let editBtn = document.createElement("button");
+            let deleteBtn = document.createElement("button");
+
+            let ul = document.querySelector("ul");
+            newLi.innerText = input.value;
+            ul.append(newLi);
+            editBtn.classList.add("Edit");
+            deleteBtn.classList.add("delete");
+            editBtn.innerHTML = "Edit";
+            deleteBtn.innerHTML = "Delete";
+            newLi.append(editBtn);
+            newLi.append(deleteBtn);
+         
+
+
+            function deleted() {
+            newLi.remove();
+        }
+            deleteBtn.addEventListener("click", () => {
+            deleted();
+        })
+
+
+
+
+        function edited(){
+           let editInput =  document.createElement("input");
+           let update = document.createElement("button");
+           let cancle = document.createElement("button")
+           update.innerHTML = "Update";
+           cancle.innerHTML = "Cancle";
+           ul.append(editInput);
+           editInput.after(update);
+           editInput.after(cancle);
+           editInput.value = newLi.innerText.slice(0 , -10);
+
+
+           function updated(){
+            newLi.innerHTML = editInput.value;
+
+        }
+
+        update.addEventListener("click" , ()=>{
+            updated();
+        })
+
+           
+
+        }
+
+        editBtn.addEventListener("click" , ()=>{
+            edited();
+
+        })
+
+       
+
+
+
+
+        }
+
+        
+        
+
+      
     </script>
 </body>
 
