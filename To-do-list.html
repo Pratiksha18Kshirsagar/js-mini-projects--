@@ -5,11 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To do list</title>
+    <link rel="stylesheet" href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Satisfy&display=swap');
 
         body {
             font-family: "Cormorant Garamond", serif;
+            background-color: wheat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .main {
+            background-color: whitesmoke;
+            min-height: 500px;
+            width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 2px 12px 12px 2px rgba(165, 42, 42, 0.594);
+            border-radius: 10px;
+            margin-top: 40px;
         }
 
         button {
@@ -17,112 +36,228 @@
         }
 
         h1 {
-            color: brown;
+            color: rgb(77, 50, 39);
+            font-weight: 1000;
+            font-size: 50px;
         }
 
         li {
             padding: 5px;
             list-style: decimal;
+           
         }
 
         .Edit {
             margin: 5px;
+            border: none;
+            background-color: #fff493c3;
+            padding: 5px;
+            border-radius: 5px;
+            color: rgb(77, 50, 39);
+            font-weight: 500;
+
+        }
+
+        label {
+            font-weight: 700;
+            font-size: 30px;
+            color: #cd7700;
+        }
+
+        .add {
+            color: rgb(77, 50, 39);
+            background-color: rgba(222, 184, 135, 0.658);
+            border: none;
+            margin: 8px;
+            font-size: 20px;
+            font-weight: 800;
+            padding: 3px;
+            width: 80px;
+            border-radius: 10px;
+        }
+
+        .add:hover {
+            background-color: rgba(165, 42, 42, 0.596);
+            color: white;
+            box-shadow: 2px 2px 12px 2px rgba(165, 42, 42, 0.39);
+        }
+
+
+        input {
+            width: 300px;
+
+            border: 1px solid burlywood;
+            border-radius: 5px;
+
+        }
+
+        .delete {
+            border: none;
+            background-color: #ff7f7f;
+            padding: 5px;
+            border-radius: 5px;
+            color: white;
+            font-weight: 500;
+        }
+
+        .Edit,
+        .delete {
+            margin-left: 20px;
+        }
+
+        span {
+            font-size: 20px;
+        }
+
+        .update {
+            border: none;
+            background-color: #cefad0;
+            padding: 5px;
+            border-radius: 5px;
+            color: rgb(77, 50, 39);
+            font-weight: 500;
+            margin: 5px;
+        }
+
+        .cancle {
+            border: none;
+            background-color: #ff7f7f;
+            padding: 5px;
+            border-radius: 5px;
+            color: white;
+            font-weight: 500;
+            margin: 5px;
+
+        }
+
+        .checkBox {
+            width: 20px;
+            display: inline;
+            height: 30px;
         }
     </style>
 </head>
 
 <body>
-    <h1>To Do List</h1>
+    <div class="main">
+        <h1>To Do List</h1>
 
 
-    <label for="task">Add Task :</label>
-    <input type="text" id="task">
-    <button class="add">Add</button>
+        <label for="task">Add Task </label>
+        <input type="text" id="task">
+        <button class="add">Add</button>
 
-    <ul>
+        <ul>
 
-    </ul>
+        </ul>
+    </div>
 
     <script>
+
+
         let input = document.querySelector("input");
         let addbtn = document.querySelector(".add");
 
         addbtn.addEventListener("click", () => {
             if (input.value) {
+
                 add();
             }
         })
 
-
+        //function for add button
         function add() {
+            let editing = 0;
+
+            //random color generator!!
+            let val1 = Math.ceil(0 + Math.random() * 255);
+            let val2 = Math.ceil(0 + Math.random() * 255);
+            let val3 = Math.ceil(0 + Math.random() * 255);
+
+
             let newLi = document.createElement("li");
-            console.log(newLi)
+            console.log(newLi);
+            //checkbox creator!!
+            let check = document.createElement("input");
+            check.setAttribute("type", "checkbox");
+            let text = document.createElement("span");
+
+
             let editBtn = document.createElement("button");
             let deleteBtn = document.createElement("button");
 
             let ul = document.querySelector("ul");
-            newLi.innerText = input.value;
+            text.innerText = input.value;
+            text.style.color = `rgb(${val1}, ${val2}, ${val3})`;
             ul.append(newLi);
+            text.prepend(check);
+
+            check.classList.add("checkBox");
+            newLi.append(text);
             editBtn.classList.add("Edit");
             deleteBtn.classList.add("delete");
             editBtn.innerHTML = "Edit";
             deleteBtn.innerHTML = "Delete";
             newLi.append(editBtn);
             newLi.append(deleteBtn);
-         
 
 
+            //add the deleted function
             function deleted() {
-            newLi.remove();
-        }
+                newLi.remove();
+            }
             deleteBtn.addEventListener("click", () => {
-            deleted();
-        })
+                deleted();
+            })
 
 
 
+            //write the edit function
+            function edited() {
 
-        function edited(){
-           let editInput =  document.createElement("input");
-           let update = document.createElement("button");
-           let cancle = document.createElement("button")
-           update.innerHTML = "Update";
-           cancle.innerHTML = "Cancle";
-           ul.append(editInput);
-           editInput.after(update);
-           editInput.after(cancle);
-           editInput.value = newLi.innerText.slice(0 , -10);
+                let editInput = document.createElement("input");
+                let update = document.createElement("button");
+                let cancle = document.createElement("button");
+                update.classList.add("update");
+                cancle.classList.add("cancle");
+                update.innerHTML = "Update";
+                cancle.innerHTML = "Cancle";
+                ul.append(editInput);
+                editInput.after(cancle);
+                editInput.after(update);
+
+                editInput.value = text.innerText;
 
 
-           function updated(){
-            newLi.innerHTML = editInput.value;
+                //write the update function
+                function updated() {
+                    text.innerHTML = editInput.value;
+                    editInput.remove();
+                    cancle.remove();
+                    update.remove();
 
+                }
+
+                update.addEventListener("click", () => {
+                    updated();
+                })
+
+                //write the cancled function
+                function cancled() {
+                    editInput.remove();
+                    cancle.remove();
+                    update.remove();
+                }
+                cancle.addEventListener("click", () => {
+                    cancled();
+                })
+            }
+
+
+            editBtn.addEventListener("click", () => {
+                edited();
+            })
         }
-
-        update.addEventListener("click" , ()=>{
-            updated();
-        })
-
-           
-
-        }
-
-        editBtn.addEventListener("click" , ()=>{
-            edited();
-
-        })
-
-       
-
-
-
-
-        }
-
-        
-        
-
-      
     </script>
 </body>
 
