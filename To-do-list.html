@@ -226,7 +226,7 @@
 
             //write the edit function
             function edited() {
-                if (!editing) {
+                if (editing == false) {
                     editing = true;
 
                     let editInput = document.createElement("input");
@@ -249,6 +249,7 @@
                         editInput.remove();
                         cancle.remove();
                         update.remove();
+                        editing = false;
 
                     }
 
@@ -261,6 +262,7 @@
                         editInput.remove();
                         cancle.remove();
                         update.remove();
+                        editing = false;
                     }
                     cancle.addEventListener("click", () => {
                         cancled();
