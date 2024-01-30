@@ -22,7 +22,7 @@
         .main {
             background-color: whitesmoke;
             min-height: 500px;
-            width: 500px;
+            min-width: 50vw;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -44,7 +44,13 @@
         li {
             padding: 5px;
             list-style: decimal;
-           
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 40vw;
+
+
+
         }
 
         .Edit {
@@ -107,6 +113,8 @@
 
         span {
             font-size: 20px;
+            font-weight: 800;
+            min-width: 50%;
         }
 
         .update {
@@ -132,8 +140,11 @@
 
         .checkBox {
             width: 20px;
+
             display: inline;
             height: 30px;
+            margin-right: 10px;
+
         }
     </style>
 </head>
@@ -167,7 +178,7 @@
 
         //function for add button
         function add() {
-            let editing = 0;
+            let editing = false;
 
             //random color generator!!
             let val1 = Math.ceil(0 + Math.random() * 255);
@@ -188,9 +199,10 @@
 
             let ul = document.querySelector("ul");
             text.innerText = input.value;
+            input.value = " ";
             text.style.color = `rgb(${val1}, ${val2}, ${val3})`;
             ul.append(newLi);
-            text.prepend(check);
+            newLi.prepend(check);
 
             check.classList.add("checkBox");
             newLi.append(text);
@@ -214,48 +226,61 @@
 
             //write the edit function
             function edited() {
+                if (!editing) {
+                    editing = true;
 
-                let editInput = document.createElement("input");
-                let update = document.createElement("button");
-                let cancle = document.createElement("button");
-                update.classList.add("update");
-                cancle.classList.add("cancle");
-                update.innerHTML = "Update";
-                cancle.innerHTML = "Cancle";
-                ul.append(editInput);
-                editInput.after(cancle);
-                editInput.after(update);
+                    let editInput = document.createElement("input");
+                    let update = document.createElement("button");
+                    let cancle = document.createElement("button");
+                    update.classList.add("update");
+                    cancle.classList.add("cancle");
+                    update.innerHTML = "Update";
+                    cancle.innerHTML = "Cancle";
+                    ul.append(editInput);
+                    editInput.after(cancle);
+                    editInput.after(update);
 
-                editInput.value = text.innerText;
+                    editInput.value = text.innerText;
 
 
-                //write the update function
-                function updated() {
-                    text.innerHTML = editInput.value;
-                    editInput.remove();
-                    cancle.remove();
-                    update.remove();
+                    //write the update function
+                    function updated() {
+                        text.innerHTML = editInput.value;
+                        editInput.remove();
+                        cancle.remove();
+                        update.remove();
 
+                    }
+
+                    update.addEventListener("click", () => {
+                        updated();
+                    })
+
+                    //write the cancled function
+                    function cancled() {
+                        editInput.remove();
+                        cancle.remove();
+                        update.remove();
+                    }
+                    cancle.addEventListener("click", () => {
+                        cancled();
+                    })
                 }
-
-                update.addEventListener("click", () => {
-                    updated();
-                })
-
-                //write the cancled function
-                function cancled() {
-                    editInput.remove();
-                    cancle.remove();
-                    update.remove();
-                }
-                cancle.addEventListener("click", () => {
-                    cancled();
-                })
             }
 
 
             editBtn.addEventListener("click", () => {
                 edited();
+            })
+
+
+
+            check.addEventListener("click", () => {
+                if (check.checked) {
+                    text.style.textDecoration = "line-through";
+                } else {
+                    text.style.textDecoration = "none";
+                }
             })
         }
     </script>
