@@ -164,13 +164,15 @@
     </div>
 
     <script>
-
+        
+       
 
         let input = document.querySelector("input");
         let addbtn = document.querySelector(".add");
+        input.value = " ";
 
         addbtn.addEventListener("click", () => {
-            if (input.value) {
+            if (input.value != " ") {
 
                 add();
             }
@@ -199,11 +201,11 @@
 
             let ul = document.querySelector("ul");
             text.innerText = input.value;
-            input.value = " ";
+
             text.style.color = `rgb(${val1}, ${val2}, ${val3})`;
             ul.append(newLi);
             newLi.prepend(check);
-
+            input.value = " ";
             check.classList.add("checkBox");
             newLi.append(text);
             editBtn.classList.add("Edit");
