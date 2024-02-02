@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+
+        .container{
+            display: flex;
+            /* justify-content: center; */
+            align-items: center;
+            width: 600px;
+            height: 600px;  
+            flex-direction: column;
+            position: absolute;
+        }
+        body {
+            background-color: #c6fcff7a;
+            font-family: "Gowun Batang";
+            display: flex;
+            justify-content: center;
+            align-items: center;    
+        }
+        h1 {
+            color: #005469;
+            font-size: 40px;
+            font-weight: bold;   
+        }
+        img{
+            object-fit: contain;
+            height: 600px;
+            position: relative;
+        }
+        input{
+            margin: 10px;
+            padding: 5px;
+            width:250px ;
+        }
+        button{
+            background-color: white;
+            border: 1px solid black;
+            padding: 10px;
+            border-radius: 100px;
+        }
+        button:hover{
+           background-color: #d1ffbd;
+        }
+        .weatherinfo{
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./weather.jpeg" alt="">
+    <div class="container">
+        <h1>Weather forecast</h1>
+        <input type="text" placeholder="Enter your city">
+        <button id="btn" onclick="getWeather()">Search</button>
+        <div class="data">
+        </div>
+    </div>
+
+    <script>
+        //create an async function!
+        async function getWeather() {
+            let apiKey = "64b71db2b9ac2e33740181245642c47a";
+            let cityInput = document.querySelector("input");
+            let weatherData = document.querySelector(".data");
+            let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput.value}&appid=${apiKey}&units=metric`;
+            if (cityInput.value == '') {
+                alert("Plz enter city name!!");
+                return;
+            }
+            try {
+                const response = await fetch(apiUrl);
+                let data = await response.json();
+                console.log(data);
+                if (data.cod == '404') {
+                    alert("City not Found!! plz enter valid city name!!");
+                    return;
+                }
+                weatherData.innerHTML = `<h2>${data.name}, ${data.sys.country}</h2>
+                <div class = "weatherinfo">
+                <p class="temp">Temp : ${data.main.temp}°C</p>
+                <p class = "cloud">cloud : ${data.weather[0].description}</p>
+                <p class ="humidity">Humidity : ${data.main.humidity}%</p> </div>`;
+            } catch (error) {
+                console.log("Oops Error occured!!");
+            }
+
+        }
+    </script>
+</body>
+
+</html>
