@@ -10,7 +10,7 @@
 
 
   <title>Frontend Mentor | Age calculator app</title>
-  <script src="./script.js"></script>
+
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
@@ -99,15 +99,19 @@
     <div class="header">
       <div class="day">
         <p> Day</p>
-        <input class="Iday" type="text" placeholder="DD">
+        <input class="Iday" type="text" placeholder="DD" required>
+        <p> </p>
       </div>
+
       <div class="month">
         <p> Month</p>
-        <input class="Imonth" type="text" placeholder="MM">
+        <input class="Imonth" type="text" placeholder="MM" required>
+        <p> </p>
       </div>
       <div class="year">
         <p> Year</p>
-        <input class="Iyear" type="text" placeholder="YYYY">
+        <input class="Iyear" type="text" placeholder="YYYY" required>
+        <p> </p>
       </div>
     </div>
     <div class="arrow">
@@ -121,7 +125,7 @@
     </div>
   </div>
 
-
+  <script src="./script.js"></script>
 </body>
 
 </html>
