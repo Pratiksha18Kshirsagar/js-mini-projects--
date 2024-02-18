@@ -65,7 +65,7 @@
     input {
       border-radius: 5px;
       height: 40px;
-      width: 80px;
+      width: 90px;
       border: 1px solid hsl(0, 1%, 44%);
       font-size: 22px;
       font-weight: bold;
@@ -91,6 +91,41 @@
     span {
       color: hsl(259, 100%, 65%);
     }
+    img:hover{
+      background-color: rgba(0, 0, 0, 0.792);
+    }
+    
+@media screen and (max-width:600px) {
+  input{
+    width: 60px;
+  }
+  .line{
+    position: relative;
+    margin-top: 30px;
+    width: 260px;
+  }
+  .arrow img{
+          position: absolute;
+          margin-top: 30px;
+  }
+  .container{
+    min-height: 30vh;
+  }
+  .arrow{
+    padding: 20px;
+  }
+  p :nth-child(1){
+    width:90px;
+  }
+  p :nth-child(3){
+    width: 90px;
+  }
+  p :nth-child(5){
+    width:90px;
+  }
+  
+}
+
   </style>
 </head>
 
