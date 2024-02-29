@@ -11,82 +11,150 @@
   <title>Frontend Mentor | Interactive card details form</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
-    
-    body{
-      font-family: "Space Grotesk",
+
+    body {
+      font-family: "Space Grotesk";
+      margin: 0;
+      padding: 0;
     }
-    .card {
+
+    .container {
+      display: flex;
+    }
+
+    .bg {
       position: relative;
+      height: 100vh;
+      width: 35%;
     }
 
-    .card p {
+    .front {
+      height: 200px;
       position: absolute;
-      bottom: 25%;
-      left: 8%;
-      font-size: 40px;
+      top: 100px;
+      left: 200px;
+    }
+
+    .back {
+      height: 200px;
+      position: absolute;
+      top: 340px;
+      left: 300px;
+
+    }
+
+    .cno {
+      position: absolute;
+      top: 190px;
+      left: 236px;
+      color: white;
+      font-size: 25px;
+    }
+
+    .name {
+      position: absolute;
+      top: 260px;
+      left: 234px;
       color: white;
     }
 
-    .card .name {
+    .exp {
       position: absolute;
-      bottom: 10%;
-      left: 8%;
-      font-size: 22px;
+      top: 260px;
+      left: 464px;
       color: white;
     }
 
-    .card .exp {
+    .cvv {
       position: absolute;
-      bottom: 10%;
-      left: 30%;
-      font-size: 22px;
-      color: white;
+      top: 427px;
+      left: 592px;
+
     }
+
+    .main {
+      margin-left: 250px;
+      margin-top: 150px;
+    }
+
+    .inputs {
+      display: flex;
+      gap: 20px;
+
+
+    }
+
+    .inputs :nth-child(1) {
+      width: 65px;
+      height: 36px;
+      border-radius: 10px;
+    }
+
+    .inputs :nth-child(2) {
+      width: 65px;
+      height: 36px;
+      border-radius: 10px;
+    }
+
+    .inputs :nth-child(3) {
+      width: 100px;
+      height: 36px;
+      border-radius: 10px;
+    }
+
+    .cname , .cnum{
+      width: 300px;
+      height:36px ;
+      border-radius: 10px;
+    }
+
+    
   </style>
 </head>
 
 <body>
   <div class="container">
+    <img class="bg" src="./images/bg-main-desktop.png" alt="">
+    <img class="back" src="./images/bg-card-back.png" alt="">
     <div class="card">
       <img class="logo" src="./images/card-logo.svg" alt="">
       <img class="front" src="./images/bg-card-front.png" alt="">
-      <p> 0000 0000 0000 0000</p>
+      <p class="cno"> 0000 0000 0000 0000</p>
       <span class="name"> Jane Appleseed</span>
       <span class="exp">00/00</span>
     </div>
 
 
 
-    000
+    <span class="cvv">000</span>
 
     <div class="main">
       <p> Cardholder Name</p>
-      <input type="text" name="" id="" placeholder=" Jane Appleseed">
+      <input class="cname" type="text" name="" id="" placeholder=" Jane Appleseed">
 
 
       <p>Card Number </p>
-      <input type="text" placeholder="1234 5678 9123 0000">
+      <input class="cnum" type="text" placeholder="1234 5678 9123 0000">
 
       <div class="date">
-        <p> Exp. Date (MM/YY)</p>
-        <input type="text" name="" id="" placeholder=" MM">
+        <span> Exp. Date (MM/YY)</span>
+        <span>CVC</span>
+        <div class="inputs">
+          <input type="text" name="" id="" placeholder=" MM">
 
-        <input type="text" name="" id="" placeholder="YY">
-
-
-
-        <p>CVC</p>
-        <input type="text" placeholder=" 123">
+          <input type="text" name="" id="" placeholder="YY">
+          <input type="text" placeholder=" 123">
+        </div>
       </div>
 
       <button>Confirm</button>
     </div>
     <!-- Completed state start -->
-    <div class="last">
+    <!-- <div class="last">
       <p> Thank you!</p>
       <p> We've added your card details </p>
       <button>Continue</button>
-    </div>
+    </div> -->
   </div>
 </body>
 
