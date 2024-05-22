@@ -7,7 +7,8 @@ body {
     background-color: #006989;
     text-align: center;
 }
-h1{
+
+h1 {
     color: #EAEBED;
 }
 
@@ -30,7 +31,7 @@ h1{
 
 }
 
-.box{
+.box {
     height: 18vmin;
     width: 18vmin;
     background-color: #EAEBED;
@@ -39,15 +40,39 @@ h1{
     /* box-shadow:  5px 5px 35px rgba(245, 245, 245, 0.406); */
     color: #01A7C2;
     font-size: 60px;
+
+}
+
+#reset {
+    border-radius: 5px;
+    height: 35px;
+    width: 90px;
+    border: none;
+    background-color: #EAEBED;
+    color: #01A7C2;
+    font-weight: bold;
+}
+
+#new {
+    border-radius: 5px;
+    height: 35px;
+    width: 90px;
+    border: none;
+    background-color: #EAEBED;
+    color: #01A7C2;
+    font-weight: bold;
+}
+
+#msg{
+    color: #EAEBED;
+    font-size: 5vmin;
+}
+
+.msg-container{
+    height: 30vmin;
     
 }
 
-#reset{
-border-radius: 5px;
-height: 35px;
-width: 90px;
-border: none;
-background-color: #EAEBED;
-color: #01A7C2;
-font-weight: bold;
+.hide{
+    display: none;
 }
